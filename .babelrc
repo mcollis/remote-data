@@ -1,0 +1,16 @@
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "targets": ["ie >= 11", "> 1%", "last 2 versions", "Firefox ESR"],
+        "modules": "commonjs"
+      }
+    ],
+    "@babel/preset-react",
+    "@babel/preset-flow"
+  ],
+  "plugins": [
+    ["@babel/plugin-proposal-pipeline-operator", { "proposal": "minimal" }]
+  ]
+}
