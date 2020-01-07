@@ -3,10 +3,16 @@
   "version": "0.1.0",
   "description": "RemoteData ADT with react hook",
   "main": "dist/index.js",
+  "module": "dist/index.es.js",
+  "jsnext:main": "dist/index.es.js",
+  "engines": {
+    "node": ">=8",
+    "npm": ">=5"
+  },
   "scripts": {
     "prestart": "npm run build",
-    "start": "npx parcel example/index.html",
-    "build": "npx parcel build src/index.js --detailed-report",
+    "start": "cd example && npm i && npm start",
+    "build": "rollup -c",
     "test": "jest"
   },
   "author": "",
@@ -17,6 +23,9 @@
     "@babel/preset-env": "^7.7.7",
     "@babel/preset-flow": "^7.7.4",
     "@babel/preset-react": "^7.7.4",
+    "@rollup/plugin-commonjs": "^11.0.1",
+    "@rollup/plugin-node-resolve": "^7.0.0",
+    "@rollup/plugin-url": "^4.0.1",
     "babel-jest": "^24.9.0",
     "babel-plugin-import": "^1.13.0",
     "eslint": "^6.8.0",
@@ -25,13 +34,15 @@
     "eslint-plugin-react": "^7.17.0",
     "jest": "^24.9.0",
     "prettier": "^1.19.1",
-    "react-test-renderer": "^16.12.0"
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "rollup": "^1.1.2",
+    "rollup-plugin-babel": "^4.3.2",
+    "rollup-plugin-peer-deps-external": "^2.2.0"
   },
   "peerDependencies": {
-    "react": ">=16.12.0",
-    "react-dom": ">=16.12.0"
-  },
-  "dependencies": {
+    "react": ">=16.9.0",
+    "react-dom": ">=16.9.0",
     "folktale": "^2.3.2",
     "ramda": "^0.26.1"
   }

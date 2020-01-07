@@ -1,10 +1,10 @@
 import * as R from 'ramda';
-const assertType = require('folktale/helpers/assert-type');
-const assertFunction = require('folktale/helpers/assert-function');
-const { union, derivations } = require('folktale/adt/union');
-const provideAliases = require('folktale/helpers/provide-fantasy-land-aliases');
-const adtMethods = require('folktale/helpers/define-adt-methods');
-const Maybe = require('folktale/maybe');
+import assertType from 'folktale/helpers/assert-type';
+import assertFunction from 'folktale/helpers/assert-function';
+import { union, derivations } from 'folktale/adt/union';
+import provideAliases from 'folktale/helpers/provide-fantasy-land-aliases';
+import adtMethods from 'folktale/helpers/define-adt-methods';
+import Maybe from 'folktale/maybe';
 
 const { equality, debugRepresentation, serialization } = derivations;
 
@@ -165,7 +165,6 @@ adtMethods(RemoteData, {
     },
     Success: function sequence(of) {
       assertFunction('RemoteData.Success#sequence', of);
-      // return this.value.map(RemoteData.of);
       return this.traverse(of, R.identity);
     },
   },
@@ -189,7 +188,6 @@ adtMethods(RemoteData, {
     Success: function traverse(of, fn) {
       assertFunction('RemoteData.Success#traverse', of);
       assertFunction('RemoteData.Success#traverse', fn);
-      // return this.map(fn).sequence(of);
       return fn(this.value).map(RemoteData.of);
     },
   },
@@ -227,4 +225,5 @@ provideAliases(Failure.prototype);
 provideAliases(Success.prototype);
 provideAliases(RemoteData);
 
-module.exports = RemoteData;
+export default RemoteData;
+export { NotAsked, Pending, Success, Failure };

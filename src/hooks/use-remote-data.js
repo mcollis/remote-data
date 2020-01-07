@@ -1,24 +1,24 @@
 import React from 'react';
 import * as R from 'ramda';
-import { Nothing, Just } from 'folktale/maybe';
-import { any } from 'folktale/adt/union/union';
+import Maybe from 'folktale/maybe';
+import union from 'folktale/adt/union/union';
 
-import { NotAsked, Pending, Success, Failure } from '../remote-data';
+import RemoteData from '../remote-data';
 
 const useRemoteData = (url, init = {}) => {
-  const [response, setResponse] = React.useState(NotAsked());
+  const [response, setResponse] = React.useState(RemoteData.NotAsked());
 
   const onRequest = React.useCallback(() => {
     response.matchWith({
-      Pending: ({ value }) => Pending(value),
-      Success: ({ value }) => Just(value) |> Pending,
-      [any]: () => Nothing() |> Pending,
+      Pending: ({ value }) => RemoteData.Pending(value),
+      Success: ({ value }) => Maybe.Just(value) |> RemoteData.Pending,
+      [union.any]: () => Maybe.Nothing() |> RemoteData.Pending,
     }) |> setResponse;
 
     fetch(url, init)
       |> R.then(result => (result.ok ? result.json() : Promise.reject(result)))
-      |> R.then(result => Success(result) |> setResponse)
-      |> R.otherwise(error => Failure(error) |> setResponse);
+      |> R.then(result => RemoteData.Success(result) |> setResponse)
+      |> R.otherwise(error => RemoteData.Failure(error) |> setResponse);
   }, [url, init]);
 
   return [response, onRequest];

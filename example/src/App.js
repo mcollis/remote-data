@@ -1,18 +1,14 @@
 import React from 'react';
-import * as R from 'ramda';
-import { union } from 'folktale/adt/union';
+import { any } from 'folktale/adt/union/union';
+import { useRemoteData } from '@mcollis/remote-data';
 
-import RemoteData, { useRemoteData } from '../src/index.js';
-
-export default () => {
+const App = () => {
   const [response, onRequest] = useRemoteData(
     'https://jsonplaceholder.typicode.com/posts',
   );
-
   React.useEffect(onRequest, []);
-
   return (
-    <div style={{ width: '800px', margin: '1.5em auto' }}>
+    <div>
       <h1>RemoteData - useRemoteData</h1>
       {response.matchWith({
         Pending: () => <p>Loading...</p>,
@@ -24,11 +20,10 @@ export default () => {
               <hr />
             </div>
           )),
-        Failure: () => (
-          <p>An issue occured while connecting to the services.</p>
-        ),
-        [union.any]: () => null,
+        [any]: () => null,
       })}
     </div>
   );
 };
+
+export default App;
