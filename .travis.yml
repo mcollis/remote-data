@@ -1,6 +1,7 @@
 language: node_js
 node_js:
   - '10'
+
 script:
   - npm run lint
   - npm test
@@ -8,8 +9,12 @@ branches:
   only:
     - master
     - /^v\d+\.\d+(\.\d+)?(-\S*)?$/
-before_deploy: 'rm -rf .gitignore'
+before_deploy:
+  - 'rm -rf .gitignore'
+  - npm run build
 deploy:
   provider: npm
+  email: collis.michael@gmail.com
+  skip_cleanup: true
   on:
     tags: true
