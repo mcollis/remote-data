@@ -22,7 +22,9 @@
     "build": "rollup -c",
     "lint": "eslint --ext jsx --ext js ./src ./example/src",
     "test": "jest",
-    "prepublish": "npm run build"
+    "prepublish": "npm run build",
+    "preversion": "git push",
+    "postversion": "git push --tags"
   },
   "author": "",
   "license": "ISC",
