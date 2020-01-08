@@ -1,5 +1,6 @@
 import * as R from 'ramda';
 import Maybe from 'folktale/maybe';
+
 import RemoteData from './remote-data';
 
 describe('RemoteData', () => {

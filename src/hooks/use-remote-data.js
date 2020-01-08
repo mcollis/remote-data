@@ -1,7 +1,7 @@
 import React from 'react';
 import * as R from 'ramda';
 import Maybe from 'folktale/maybe';
-import union from 'folktale/adt/union/union';
+import { any } from 'folktale/adt/union/union';
 
 import RemoteData from '../remote-data';
 
@@ -12,16 +12,16 @@ const useRemoteData = (url, init = {}) => {
     response.matchWith({
       Pending: ({ value }) => RemoteData.Pending(value),
       Success: ({ value }) => Maybe.Just(value) |> RemoteData.Pending,
-      [union.any]: () => Maybe.Nothing() |> RemoteData.Pending,
+      [any]: () => Maybe.Nothing() |> RemoteData.Pending,
     }) |> setResponse;
 
     fetch(url, init)
       |> R.then(result => (result.ok ? result.json() : Promise.reject(result)))
-      |> R.then(result => RemoteData.Success(result) |> setResponse)
-      |> R.otherwise(error => RemoteData.Failure(error) |> setResponse);
-  }, [url, init]);
+      |> R.otherwise(error => RemoteData.Failure(error) |> setResponse)
+      |> R.then(result => RemoteData.Success(result) |> setResponse);
+  }, [response, url, init]);
 
-  return [response, onRequest];
+  return React.useMemo(() => [response, onRequest], [response, onRequest]);
 };
 
 export default useRemoteData;

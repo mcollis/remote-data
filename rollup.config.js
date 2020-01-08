@@ -14,11 +14,13 @@ export default {
       format: 'cjs',
       sourcemap: true,
       exports: 'named',
+      output: 'compact',
     },
     {
       file: pkg.module,
       format: 'es',
       sourcemap: true,
+      output: 'compact',
     },
   ],
   plugins: [
