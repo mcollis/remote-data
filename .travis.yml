@@ -4,8 +4,11 @@ node_js:
 script:
   - npm run lint
   - npm test
-branches: master
-before_deploy: 'rm .gitignore'
+branches:
+  only:
+    - master
+    - /^v\d+\.\d+(\.\d+)?(-\S*)?$/
+before_deploy: 'rm -rf .gitignore'
 deploy:
   provider: npm
   on:
