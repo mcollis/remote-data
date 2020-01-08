@@ -10,12 +10,12 @@ branches:
     - master
     - /^v\d+\.\d+(\.\d+)?(-\S*)?$/
 before_deploy:
-  - 'rm -rf .gitignore'
+  - echo > .npmignore
   - npm run build
 deploy:
   provider: npm
   email: collis.michael@gmail.com
-  api_key: NPM_API_TOKEN
+  api_key: $NPM_API_TOKEN
   skip_cleanup: true
   on:
     tags: true
