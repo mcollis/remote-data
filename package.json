@@ -1,6 +1,6 @@
 {
   "name": "@mcollis/remote-data",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "RemoteData ADT with react hook",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
