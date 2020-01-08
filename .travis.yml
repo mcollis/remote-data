@@ -15,6 +15,7 @@ before_deploy:
 deploy:
   provider: npm
   email: collis.michael@gmail.com
+  api_key: NPM_API_TOKEN
   skip_cleanup: true
   on:
     tags: true
