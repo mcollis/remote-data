@@ -5,17 +5,17 @@ node_js:
 script:
   - npm run lint
   - npm test
+  - npm run build
 branches:
   only:
     - master
     - /^v\d+\.\d+(\.\d+)?(-\S*)?$/
 before_deploy:
-  - echo > .npmignore
-  - npm run build
+  - touch .npmignore
 deploy:
   provider: npm
   email: collis.michael@gmail.com
-  api_key: $NPM_API_TOKEN
+  api_key: 'oSIrCVEKF2jvvJVymqvDaJOYgVG9E5G37icNkI5nPbuuj3nSFP37N2/5Oxaf2YWyGd+K2Or2vFwkemrao5jlm8LKa9XOD92+VzVGAfCUd3lTYKNFNHjHkNDAmnHXQ/UkHOtAIqa4SmiehGBot9sSU++O41h1lsM2vQ/qSTqz/6nLvwunMB6IyBnw7fM/ctt3zMttowE2LuHU/mmLRYPBobhVtn2yC51yPnZ91Hv5jlwyg2iZ48P35a0PpIdwm46L6fKSBgl1kyagnwA+B4TPrq5vkMYla79xum0RQLoA3/unRunF5TzGfT5MjKEq3I+mP04WmaXvHjycJmI5x9MhLPNhvAbMP2BX0blUNJuS0o/A987RAbjElAvxWz+Qu53BGfaMO7b0Wy5OheYRR4AHf+ogE8EYbxojWFE+Hq4jrHdOcMQsgwe/pkC+FSU2iTA6jIvuTHirD6bD1uHsAeJmCYeMd2OKV/z+8kUi18/eQwT02EMM53rkRjeibZTZ+C3eRPHY9Orzg5X0NVoRAeLPeAYobgKDLO8ec6hTC29sA3DdZeBM6PRBFaR4J+ednYOIVELK7e2pwwdpDooXEv3ywGi7hdOXmXeBLxZiBNTQbNfBlmRwvLiEaT8ylsnCgU+Xrz3erCyt8E2bQ75CeLqTNysuH355BWQypP30V5OWB+E='
   skip_cleanup: true
   on:
     tags: true
