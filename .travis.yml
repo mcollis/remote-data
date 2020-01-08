@@ -5,6 +5,7 @@ script:
   - npm run lint
   - npm test
 branches: master
+before_deploy: 'rm .gitignore'
 deploy:
   provider: npm
   on:
