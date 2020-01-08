@@ -13,12 +13,16 @@
     "dist",
     "README.md"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "prestart": "npm run build",
     "start": "cd example && npm ci && npm start",
     "build": "rollup -c",
     "lint": "eslint --ext jsx --ext js ./src ./example/src",
-    "test": "jest"
+    "test": "jest",
+    "prepublish": "npm run build"
   },
   "author": "",
   "license": "ISC",
@@ -51,5 +55,16 @@
   "dependencies": {
     "folktale": "^2.3.2",
     "ramda": "^0.26.1"
-  }
+  },
+  "directories": {
+    "example": "example"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mcollis/remote-data.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mcollis/remote-data/issues"
+  },
+  "homepage": "https://github.com/mcollis/remote-data#readme"
 }
