@@ -1,7 +1,6 @@
 language: node_js
 node_js:
   - '10'
-
 script:
   - npm run lint
   - npm test
@@ -14,8 +13,9 @@ before_deploy:
   - touch .npmignore
 deploy:
   provider: npm
-  dry_run: true
   email: 'collis.michael@gmail.com'
   access: public
   skip_cleanup: true
   edge: true
+  on:
+    tags: true
