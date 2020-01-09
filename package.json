@@ -17,12 +17,16 @@
     "access": "public"
   },
   "scripts": {
+    "preexample": "cd example && npm ci",
+    "example": "cd example && npm start",
     "prestart": "npm run build",
-    "start": "cd example && npm ci && npm start",
+    "start": "npx npm-run-all -p \"build -- -w\" example",
+    "clean": "npx rimraf dist",
+    "prebuild": "npm run clean",
     "build": "rollup -c",
     "lint": "eslint --ext jsx --ext js ./src ./example/src",
     "test": "jest",
-    "prepublish": "npm run build",
+    "prepare": "npm run build",
     "preversion": "git push",
     "postversion": "git push --tags"
   },

@@ -19,5 +19,3 @@ deploy:
   access: public
   skip_cleanup: true
   edge: true
-  on:
-    tags: true

@@ -12,6 +12,7 @@
     "react-router-dom": "^5.1.2"
   },
   "scripts": {
+    "prestart": "npx rimraf .cache dist",
     "start": "parcel ./public/index.html"
   },
   "browserslist": [
