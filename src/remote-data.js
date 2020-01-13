@@ -39,10 +39,7 @@ adtMethods(RemoteData, {
     Pending: function map(f) {
       assertFunction('RemoteData.Pending#map', f);
       if (Maybe.hasInstance(this.value)) {
-        return this.value.matchWith({
-          Just: ({ value }) => Pending(f(value)),
-          Nothing: () => this,
-        });
+        return Pending(this.value.map(f));
       }
       return this;
     },

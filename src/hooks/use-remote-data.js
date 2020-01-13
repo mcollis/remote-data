@@ -17,8 +17,8 @@ const useRemoteData = (url, init = {}) => {
 
     fetch(url, init)
       |> R.then(result => (result.ok ? result.json() : Promise.reject(result)))
-      |> R.otherwise(error => RemoteData.Failure(error) |> setResponse)
-      |> R.then(result => RemoteData.Success(result) |> setResponse);
+      |> R.then(result => RemoteData.Success(result) |> setResponse)
+      |> R.otherwise(error => RemoteData.Failure(error) |> setResponse);
   }, [response, url, init]);
 
   return React.useMemo(() => [response, onRequest], [response, onRequest]);
