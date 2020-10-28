@@ -207,6 +207,13 @@ Object.assign(RemoteData, {
       Nothing: () => RemoteData.NotAsked(),
     });
   },
+  fromQuery(queryObj) {
+    const { loading, error, data } = queryObj;
+    if (loading) return RemoteData.Pending(Maybe.Nothing());
+    if (error) return RemoteData.Failure(error);
+    if (data) return RemoteData.Success(data);
+    return RemoteData.NotAsked();
+  },
   first: R.curry((a, b) =>
     a.matchWith({
       Success: () => a,
