@@ -61,7 +61,7 @@
   },
   "dependencies": {
     "folktale": "^2.3.2",
-    "ramda": "^0.26.1"
+    "ramda": "^0.28.0"
   },
   "directories": {
     "example": "example"
